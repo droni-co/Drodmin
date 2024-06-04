@@ -7,7 +7,6 @@ export default NuxtAuthHandler({
     signIn: '/login'
   },
   callbacks: {
-    // Callback when the JWT is created / updated, see https://next-auth.js.org/configuration/callbacks#jwt-callback
     jwt: async ({token, user}) => {
       const isSignIn = user ? true : false;
       if (isSignIn) {
@@ -17,7 +16,6 @@ export default NuxtAuthHandler({
       }
       return Promise.resolve(token);
     },
-    // Callback whenever session is checked, see https://next-auth.js.org/configuration/callbacks#session-callback
     session: async ({session, token}) => {
       (session as any).role = token.role;
       (session as any).uid = token.id;

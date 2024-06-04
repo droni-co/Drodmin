@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-800">
+  <div class="bg-zinc-800">
     <h1>Sidebar</h1>
 
     <button class="bg-teal-100" @click="closeSession">

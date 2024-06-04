@@ -1,8 +1,7 @@
 <template>
   <h1>Home Page</h1>
-  {{ respuesta }}
-  dddd
+ {{  me }}
 </template>
 <script setup lang="ts">
-const { data:respuesta } = await useFetch('/api/appi/hollo')
+const { data:me } = await useFetch('/api/appi/me')
 </script>

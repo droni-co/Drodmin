@@ -1,10 +1,8 @@
 <template>
   <div class="bg-zinc-800">
-    <h1>Sidebar</h1>
-
-    <button class="bg-teal-100" @click="closeSession">
-      Close session
-    </button>
+    <UiButton @click="closeSession" class="px-3">
+      <i class="mdi mdi-logout"></i> Salir
+    </UiButton>
   </div>
 </template>
 <script lang="ts" setup>

@@ -65,19 +65,19 @@ declare global {
   }
   
   export interface Post {
-    id: number
-    siteId: string
-    userId: string
+    id?: number
+    siteId?: string
+    userId?: string
     name: string
     slug: string
-    description: any
-    image: any
-    format: string
-    active: number
-    props: any
-    lang: string
-    createdAt: string
-    updatedAt: string
+    description?: string | null
+    image?: string | null
+    format: 'html' | 'markdown'
+    active: boolean
+    props?: any[]
+    lang: 'es' | 'en'
+    createdAt?: string
+    updatedAt?: string
   }
   
   

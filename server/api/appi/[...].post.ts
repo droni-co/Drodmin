@@ -4,15 +4,17 @@ export default defineEventHandler(async (event) => {
   const token = await getToken({event})
   const appiToken = token?.accessToken as AppiToken
   const endpoint = String(event.node.req.url).replace('/api/appi', '')
-  
-  // const res = await $fetch(`${process.env.APPI}${endpoint}`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${appiToken.token}`
-  //   }
-  // })
-  console.log(endpoint)
+  const body = await readBody(event)
 
-  return { hola: 'mundo'}
+  console.log(appiToken)
+  
+  const res = await $fetch(`${process.env.APPI}${endpoint}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${appiToken.token}`
+    },
+    body: body
+  })
+  return res
 })

@@ -1,5 +1,4 @@
 <template>
-  <SiteMenu />
   <div class="container mx-auto">
     <h1>Posts</h1>
     <UiCard>
@@ -20,7 +19,7 @@
 </template>
 <script setup lang="ts">
 const route = useRoute()
-const { data:posts } = await useFetch<Pagination<Post[]>>(`/api/appi/${route.params.siteId}/admin/posts`)
+const { data:posts } = await useFetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts`)
 const newPost = ref<Post>({
   name: 'Post de prueba en Droni.co',
   slug: 'post-de-prueba',
@@ -30,7 +29,7 @@ const newPost = ref<Post>({
 })
 
 const createPost = async () => {
-  await useFetch<Pagination<Post[]>>(`/api/appi/${route.params.siteId}/admin/posts`, { method: 'POST', body: newPost.value}).then((res) => {
+  await useFetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts`, { method: 'POST', body: newPost.value}).then((res) => {
     newPost.value = {
       name: '',
       slug: '',

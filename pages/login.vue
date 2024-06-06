@@ -8,7 +8,7 @@
         Bienvenido a Drodmin
       </h1>
       <p class="text-zinc-600 mb-3">
-        Drodmin es una plataforma open source para administra rproyectos de software basados en Apis que te permite gestionar tus proyectos de manera eficiente.
+        Drodmin es una plataforma open source para administrar proyectos de software basados en Apis de manera eficiente.
       </p>
       <div class="text-center">
         <UiButton @click="signIn('google')">

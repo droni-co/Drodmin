@@ -13,6 +13,10 @@ export default NuxtAuthHandler({
           /* Call Appi login */
           await $fetch(`${process.env.APPI}/${process.env.APPI_SITE_ID}/login`, {
             method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Key': String(process.env.APPI_SITE_KEY),
+            },
             body: {
               access_token: account.access_token,
               provider: 'google',

@@ -8,18 +8,40 @@
         <UiButton>Create</UiButton>
       </form>
     </UiCard>
-    <div class="grid grid-cols-4">
-      <pre>
-        {{ posts }} ---
-      </pre>
-      ssss
-      {{ newPost }}
-    </div>
+    <UiTable
+      :headers="[
+        { label: 'Name', name: 'name' },
+        { label: 'Slug', name: 'slug' },
+        { label: 'Format', name: 'format' },
+        { label: 'Active', name: 'active' },
+        { label: 'Lang', name: 'lang' }
+      ]"
+      :data="posts?.data ?? []"
+      :meta="posts?.meta"
+      />
+      <UiPaginator
+        :total="posts?.meta?.total ?? 0"
+        :perPage="filters.limit"
+        :page="filters.page"
+        @paginate="getPosts"
+        />
   </div>
 </template>
 <script setup lang="ts">
 const route = useRoute()
-const { data:posts } = await useFetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts`)
+const filters = ref({ page: 1, limit: 5 })
+const posts = ref(
+  (await useFetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts?limit=${filters.value.limit}&page=${filters.value.page}`)).data.value
+  ?? { data: []}
+)
+const getPosts = async ({npage=1, nperPage=5}) => {
+  filters.value = { limit: nperPage, page: npage }
+  const data = await $fetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts?limit=${filters.value.limit}&page=${filters.value.page}`)
+  posts.value = data ?? { data: []}  
+}
+
+
+
 const newPost = ref<Post>({
   name: 'Post de prueba en Droni.co',
   slug: 'post-de-prueba',

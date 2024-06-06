@@ -48,7 +48,7 @@ declare global {
   }
 
   export interface Pagination<T extends Iterable<any>> {
-    meta: MetaPagination
+    meta?: MetaPagination
     data: T
   }
   
@@ -58,10 +58,6 @@ declare global {
     currentPage: any
     lastPage: number
     firstPage: number
-    firstPageUrl: string
-    lastPageUrl: string
-    nextPageUrl: any
-    previousPageUrl: any
   }
   
   export interface Post {

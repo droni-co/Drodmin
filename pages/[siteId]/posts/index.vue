@@ -7,16 +7,9 @@
       { label: 'Posts', to: `/${route.params.siteId}/posts` }
     ]"
     >
-    <UiButton @click="getPosts">Refresh</UiButton>
+    <SiteCreate />
   </UiTitle>
   <div class="container mx-auto">
-    <UiCard>
-      <form @submit.prevent="createPost">
-        <input v-model="newPost.name" type="text" class="w-full" placeholder="Name" required />
-        <input v-model="newPost.slug" type="text" class="w-full" placeholder="Name" required />
-        <UiButton>Create</UiButton>
-      </form>
-    </UiCard>
     <UiTable
       :headers="[
         { label: 'Name', name: 'name' },
@@ -61,23 +54,4 @@ const getPosts = async ({npage=1, nperPage=5}) => {
 
 
 
-const newPost = ref<Post>({
-  name: 'Post de prueba en Droni.co',
-  slug: 'post-de-prueba',
-  format: 'markdown',
-  active: false,
-  lang: 'es'
-})
-
-const createPost = async () => {
-  await useFetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts`, { method: 'POST', body: newPost.value}).then((res) => {
-    newPost.value = {
-      name: '',
-      slug: '',
-      format: 'markdown',
-      active: false,
-      lang: 'es'  
-    }
-  })
-}
 </script>

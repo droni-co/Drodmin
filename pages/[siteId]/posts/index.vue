@@ -3,7 +3,7 @@
     icon="mdi mdi-note-multiple-outline"
     title="Posts"
     :breadcrumb="[
-      { label: 'Site', to: `/${route.params.siteId}` },
+      { label: 'Dashboard', to: `/${route.params.siteId}` },
       { label: 'Posts', to: `/${route.params.siteId}/posts` }
     ]"
     >
@@ -41,12 +41,12 @@
 </template>
 <script setup lang="ts">
 const route = useRoute()
-const filters = ref({ page: 1, limit: 5 })
+const filters = ref({ page: 1, limit: 20 })
 const posts = ref(
   (await useFetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts?limit=${filters.value.limit}&page=${filters.value.page}`)).data.value
   ?? { data: []}
 )
-const getPosts = async ({npage=1, nperPage=5}) => {
+const getPosts = async ({npage=1, nperPage=20}) => {
   filters.value = { limit: nperPage, page: npage }
   const data = await $fetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts?limit=${filters.value.limit}&page=${filters.value.page}`)
   posts.value = data ?? { data: []}  

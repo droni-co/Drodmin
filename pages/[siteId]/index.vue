@@ -1,3 +1,12 @@
 <template>
-  <h1>Hola mundo desde un sitio</h1>
+  <UiTitle
+    icon="mdi mdi-view-dashboard-outline"
+    title="Dashboard"
+    :breadcrumb="[
+      { label: 'Dashboard', to: `/${route.params.siteId}` }
+    ]"
+    />
 </template>
+<script setup lang="ts">
+const route = useRoute()
+</script>

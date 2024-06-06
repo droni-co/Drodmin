@@ -1,4 +1,9 @@
 <template>
+  <UiTitle
+    icon="mdi mdi-home-assistant"
+    title="Drodmin"
+    :breadcrumb="[]"
+    />
   <div class="container mx-auto">
     <h1>Sitios</h1>
     <div class="grid grid-cols-4">

@@ -12,7 +12,7 @@
       <NuxtLink
         :to="`/${route.params.siteId}/posts`"
         class="my-1 text-zinc-100 block p-2 hover:bg-zinc-600 hover:text-zinc-100 rounded transition"
-        activeClass="border border-zinc-100">
+        :class="{ 'border border-zinc-400': route.path.includes(`/${route.params.siteId}/posts`) }">
         <i class="mdi mdi-note-multiple-outline"></i>
       </NuxtLink>
     </li>

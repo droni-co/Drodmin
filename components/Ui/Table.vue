@@ -11,7 +11,7 @@
       <tbody>
         <tr
           v-for="item in data"
-          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-zinc-100">
           <th
             v-for="header in headers"
             scope="row"

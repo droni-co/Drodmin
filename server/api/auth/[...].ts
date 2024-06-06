@@ -23,7 +23,6 @@ export default NuxtAuthHandler({
               lang: 'es'
             }
           }).then((res) => {
-            console.log('res', res.token.token)
             token.accessToken = res.token
           })
         } catch (error) {

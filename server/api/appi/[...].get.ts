@@ -12,7 +12,5 @@ export default defineEventHandler(async (event) => {
       'Authorization': `Bearer ${appiToken.token}`
     }
   })
-  console.log(endpoint)
-
   return res
 })

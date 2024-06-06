@@ -7,7 +7,7 @@
       { label: 'Posts', to: `/${route.params.siteId}/posts` }
     ]"
     >
-    <input type="number" v-model="filters.limit">
+    <UiButton @click="getPosts">Refresh</UiButton>
   </UiTitle>
   <div class="container mx-auto">
     <UiCard>
@@ -78,7 +78,6 @@ const createPost = async () => {
       active: false,
       lang: 'es'  
     }
-    console.log(res)
   })
 }
 </script>

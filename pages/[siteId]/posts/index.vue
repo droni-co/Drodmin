@@ -51,7 +51,4 @@ const getPosts = async ({npage=1, nperPage=20}) => {
   const data = await $fetch<Pagination<Post[]>>(`/api/appi/drodmin/${route.params.siteId}/posts?limit=${filters.value.limit}&page=${filters.value.page}`)
   posts.value = data ?? { data: []}  
 }
-
-
-
 </script>

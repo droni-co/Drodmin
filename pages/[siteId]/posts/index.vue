@@ -1,6 +1,15 @@
 <template>
+  <UiTitle
+    icon="mdi mdi-note-multiple-outline"
+    title="Posts"
+    :breadcrumb="[
+      { label: 'Site', to: `/${route.params.siteId}` },
+      { label: 'Posts', to: `/${route.params.siteId}/posts` }
+    ]"
+    >
+    <input type="number" v-model="filters.limit">
+  </UiTitle>
   <div class="container mx-auto">
-    <h1>Posts</h1>
     <UiCard>
       <form @submit.prevent="createPost">
         <input v-model="newPost.name" type="text" class="w-full" placeholder="Name" required />
@@ -11,20 +20,30 @@
     <UiTable
       :headers="[
         { label: 'Name', name: 'name' },
-        { label: 'Slug', name: 'slug' },
         { label: 'Format', name: 'format' },
         { label: 'Active', name: 'active' },
-        { label: 'Lang', name: 'lang' }
+        { label: 'Lang', name: 'lang' },
+        { label: '', name: 'actions', classes: 'w-12'}
       ]"
       :data="posts?.data ?? []"
       :meta="posts?.meta"
+      >
+      <template #name="item">
+        <strong>{{ (item as unknown as Post).name }}</strong><br>
+        <small>/{{ (item as unknown as Post).slug }}</small>
+      </template>
+      <template #actions="item">
+        <NuxtLink :to="`/${route.params.siteId}/posts/${(item as unknown as Post).id}`" class="px-3">
+          <i class="mdi mdi-pencil"></i>
+        </NuxtLink>
+      </template>
+    </UiTable>
+    <UiPaginator
+      :total="posts?.meta?.total ?? 0"
+      :perPage="filters.limit"
+      :page="filters.page"
+      @paginate="getPosts"
       />
-      <UiPaginator
-        :total="posts?.meta?.total ?? 0"
-        :perPage="filters.limit"
-        :page="filters.page"
-        @paginate="getPosts"
-        />
   </div>
 </template>
 <script setup lang="ts">

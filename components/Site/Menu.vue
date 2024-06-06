@@ -1,5 +1,6 @@
 <template>
   <NuxtLink
+    v-if="site"
     :to="`/${site.id}`"
     class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-zinc-100 rounded-lg">
     <span class="font-medium text-zinc-600">
@@ -10,7 +11,8 @@
     <li>
       <NuxtLink
         :to="`/${route.params.siteId}/posts`"
-        class="my-1 text-zinc-100 block p-2 border border-zinc-100 hover:bg-zinc-200 hover:text-zinc-800 rounded transition">
+        class="my-1 text-zinc-100 block p-2 hover:bg-zinc-600 hover:text-zinc-100 rounded transition"
+        activeClass="border border-zinc-100">
         <i class="mdi mdi-note-multiple-outline"></i>
       </NuxtLink>
     </li>

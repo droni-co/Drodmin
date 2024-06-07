@@ -1,7 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@sidebase/nuxt-auth"],
+  modules: [
+    "nuxt-monaco-editor",
+    "@nuxtjs/tailwindcss",
+    "@sidebase/nuxt-auth"
+  ],
   app: {
     head: {
       charset: 'utf-8',
@@ -17,6 +21,14 @@ export default defineNuxtConfig({
     globalAppMiddleware: true,
     provider: {
       type: 'authjs'
+    }
+  },
+  monacoEditor: {
+    // These are default values:
+    locale: 'es',
+    componentName: {
+      codeEditor: 'MonacoEditor',
+      diffEditor: 'MonacoDiffEditor'
     }
   }
 })

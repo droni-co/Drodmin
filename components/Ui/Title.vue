@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-zinc-700 py-3 shadow-lg mb-3">
+  <div class="bg-zinc-700 py-3 shadow-lg">
     <div class="container mx-auto flex">
       <div class="grow">
         <h1 class="text-2xl text-white">

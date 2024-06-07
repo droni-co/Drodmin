@@ -68,6 +68,7 @@ declare global {
     slug: string
     description?: string | null
     image?: string | null
+    content?: string
     format: 'html' | 'markdown'
     active: boolean
     props?: any[]

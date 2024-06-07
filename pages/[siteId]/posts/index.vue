@@ -1,5 +1,6 @@
 <template>
   <UiTitle
+    class="mb-3"
     icon="mdi mdi-note-multiple-outline"
     title="Posts"
     :breadcrumb="[

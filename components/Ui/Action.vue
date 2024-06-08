@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-center rounded hover:bg-zinc-900 transition hover:shadow-lg"
+    class="text-center hover:bg-zinc-900 transition hover:shadow-lg"
     :class="{
       'p-1 text-sm': props.size === 's',
       'p-2 text-base': props.size === 'm',

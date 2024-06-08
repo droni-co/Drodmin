@@ -34,8 +34,8 @@
             <label for="description" class="text-sm">Description</label>
             <UiFormTextarea id="description" class="mb-3" v-model="post.description" placeholder="Description" required />
 
-            <SiteAttachment />
-             
+            <img v-if="post.image" :src="post.image" class="w-full h-32 object-cover" :alt="post.name">
+            <SiteAttachment v-model="post.image" class="mb-3" />
 
             <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
 

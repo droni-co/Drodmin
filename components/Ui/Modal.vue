@@ -3,7 +3,7 @@
     {{ props.label }}
   </UiFormButton>
   <div v-if="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-    <div class="bg-white p-2 rounded-lg">
+    <div class="bg-white p-2">
       <div class="flex border-b">
         <h2 class="grow">{{ props.label }}</h2>
         <button @click="modal = !modal">

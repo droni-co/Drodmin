@@ -1,5 +1,4 @@
 import { getToken } from '#auth'
-import { h } from 'vue'
 
 export default defineEventHandler(async (event) => {
   const token = await getToken({event})

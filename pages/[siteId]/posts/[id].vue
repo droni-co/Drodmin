@@ -10,7 +10,7 @@
       ]"
       />
     <div class="flex grow" v-if="post">
-      <MonacoEditor v-model="post.content" :lang="post.format" :options="{ theme: 'vs-dark',  wordWrap: 'on', tabSize: 2 }" class="w-3/4" />
+      <!-- <MonacoEditor v-model="post.content" :lang="post.format" :options="{ theme: 'vs-dark',  wordWrap: 'on', tabSize: 2 }" class="w-3/4" /> -->
       <div class="px-2 grow">
         <UiCard class="mb-3">
           <div class="flex justify-between text-sm mb-3 text-zinc-600">
@@ -20,6 +20,10 @@
           <div class="flex justify-between text-sm mb-3 text-zinc-600">
             <span>Updated:</span>
             <span>{{ new Date(post.updatedAt ?? '').toLocaleString() }}</span>
+          </div>
+          <div class="flex justify-between text-sm mb-3 text-zinc-600">
+            <span>By:</span>
+            <span>{{ post.user?.username }}</span>
           </div>
           <form @submit.prevent="updatePost">
             <label for="name" class="text-sm">Name</label>

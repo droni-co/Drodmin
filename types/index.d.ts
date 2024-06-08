@@ -75,7 +75,18 @@ declare global {
     lang: 'es' | 'en'
     createdAt?: string
     updatedAt?: string
+    user?: User
   }
   
-  
+  export interface User {
+    id: string
+    name: string
+    username: string
+    avatar: string
+    email: string
+    lang: string
+    provider: string
+    createdAt: string
+    updatedAt: string
+  }
 }

@@ -1,17 +1,18 @@
 import { getToken } from '#auth'
+import { h } from 'vue'
 
 export default defineEventHandler(async (event) => {
   const token = await getToken({event})
   const appiToken = token?.accessToken as AppiToken
-  const endpoint = String(event.node.req.url).replace('/api/appi', '')
-  const body = await readBody(event)
+  const formData = await readFormData(event)
+  const endpoint = formData.get('endpoint')
 
   const res = await $fetch(`${process.env.APPI}${endpoint}`, {
     method: event.method,
     headers: {
       'Authorization': `Bearer ${appiToken.token}`
     },
-    body: body
+    body: formData
   })
   return res
 })

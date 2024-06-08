@@ -5,7 +5,7 @@
       <UiFormInput class="mb-3" id="name" v-model="newPost.name" placeholder="Name" required />
       
       <UiFormInput class="text-sm mb-3" v-model="newPost.slug" placeholder="Slug" required size="s"/>
-      <UiButton type="submit">Create</UiButton>
+      <UiFormButton type="submit">Create</UiFormButton>
     </form>
   </UiModal>
 </template>

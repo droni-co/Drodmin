@@ -98,6 +98,7 @@ declare global {
     path: string
     size: number
     mime: string
+    url: string
     createdAt: string
   }
   

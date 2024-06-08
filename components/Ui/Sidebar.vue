@@ -4,9 +4,9 @@
       <SiteMenu />
     </div>
     
-    <UiButton @click="closeSession" class="px-3 bottom-0">
+    <UiFormButton @click="closeSession" class="px-3 bottom-0">
       <i class="mdi mdi-logout"></i>
-    </UiButton>
+    </UiFormButton>
   </div>
 </template>
 <script lang="ts" setup>

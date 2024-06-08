@@ -1,20 +1,21 @@
 <template>
-  <input
-    :value="modelValue"
+  <textarea
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     class="bg-gray-50
       border
       border-gray-300
       text-gray-900
+      text-sm
       rounded
       focus:ring-blue-500
       focus:border-blue-500
       block
-      w-full"
+      w-full
+      p-2"
     :placeholder="placeholder"
-    :class="{'border-red-500': error.length > 0, 'p-1 text-sm': size === 's', 'p-2': size === 'm', 'p-5': size === 'l'}"
+    :class="{'border-red-500': error.length > 0}"
     :required="required"
-    :pattern="pattern">
+    :pattern="pattern">{{ modelValue }}</textarea>
 </template>
 <script setup lang="ts">
 const props = defineProps({
@@ -37,10 +38,6 @@ const props = defineProps({
   pattern: {
     type: String,
     default: '.*'
-  },
-  size: {
-    type: String,
-    default: 'm'
   }
 })
 </script>

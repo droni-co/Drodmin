@@ -33,18 +33,35 @@
         <div v-for="attachment in attachments.data" :key="attachment.id" class="bg-zinc-100 p-2 mb-3">
           <div
             class="cursor-pointer border"
-            :class="{ 'bg-zinc-200 border-teal-300': copied === attachment.id}"
-            @click="select(attachment)">
+            :class="{ 'bg-zinc-200 border-teal-300': copied === attachment.id}">
             <img :src="attachment.url" class="w-full h-32 object-cover" :alt="attachment.name">
-            <button
-              type="button"
-              class="w-full border bg-white text-sm p-1 text-zinc-400 truncate transition"
-              :class="{ 'bg-zinc-200': copied === attachment.id}"
-              readonly
-              >
-              <i class="mdi mdi-content-copy"></i>
-              {{ attachment.url }}
-            </button>
+            <div class="flex">
+              <button
+                type="button"
+                class="w-full border bg-white text-sm p-1 text-zinc-400 truncate transition"
+                :class="{ 'bg-zinc-200': copied === attachment.id}"
+                @click="copy(attachment)"
+                >
+                <i class="mdi mdi-content-copy"></i> Copy
+              </button>
+              <button
+                type="button"
+                class="w-full border bg-white text-sm p-1 text-zinc-400 truncate transition"
+                :class="{ 'bg-zinc-200': copied === attachment.id}"
+                @click="select(attachment)"
+                >
+                <i class="mdi mdi-check"></i> Select
+              </button>
+              <button
+                type="button"
+                class="w-full border bg-white text-sm p-1 text-zinc-400 truncate transition"
+                :class="{ 'bg-zinc-200': copied === attachment.id}"
+                readonly
+                >
+                <i class="mdi mdi-content-copy"></i>
+                {{ attachment.url }}
+              </button>
+            </div>
           </div>
           <div class="flex justify-between">
             <span class="grow text-sm text-zinc-700 p-1">{{ attachment.name }}</span>
@@ -65,6 +82,7 @@
   </div>
 </template>
 <script setup lang="ts">
+const toast = useState<Toast>('toast')
 const route = useRoute()
 const props = defineProps({
   modelValue: {
@@ -93,6 +111,11 @@ const select = (attachment: Attachment) => {
   //navigator.clipboard.writeText(attachment.url)
   emits('update:modelValue', attachment.url)
   drawer.value = false
+  copied.value = attachment.id
+}
+const copy = (attachment: Attachment) => {
+  navigator.clipboard.writeText(attachment.url)
+  toast.value = { active: true, type: 'success' , message: 'Copied to clipboard' }
   copied.value = attachment.id
 }
 

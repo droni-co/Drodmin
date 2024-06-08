@@ -101,5 +101,11 @@ declare global {
     url: string
     createdAt: string
   }
+
+  export interface Toast {
+    active: boolean
+    type: 'success' | 'error' | 'warning' | 'info'
+    message: string
+  }
   
 }

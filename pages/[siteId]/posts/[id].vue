@@ -10,7 +10,7 @@
       ]"
       />
     <div class="flex grow" v-if="post">
-      <!-- <MonacoEditor v-model="post.content" :lang="post.format" :options="{ theme: 'vs-dark',  wordWrap: 'on', tabSize: 2 }" class="w-3/4" /> -->
+      <MonacoEditor v-model="post.content" :lang="post.format" :options="{ theme: 'vs-dark',  wordWrap: 'on', tabSize: 2 }" class="w-3/4" />
       <div class="px-2 grow">
         <UiCard class="mb-3">
           <div class="flex justify-between text-sm mb-3 text-zinc-600">
@@ -33,11 +33,13 @@
             <label for="description" class="text-sm">Description</label>
             <UiFormTextarea id="description" class="mb-3" v-model="post.description" placeholder="Description" required />
 
+            <SiteAttachment v-model="post.image" class="mb-3" />
+
             <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
 
             <label for="lang" class="text-sm">Language</label>
             <UiFormSelect id="lang" class="mb-3" v-model="post.lang" :options="[{ name: 'English', id: 'en' }, { name: 'Spanish', id: 'es' }]" />
-            <UiButton>Save</UiButton>
+            <UiButton type="submit">Save</UiButton>
           </form>
         </UiCard>
 
@@ -50,7 +52,6 @@
   </div>
 </template>
 <script setup lang="ts">
-
 const route = useRoute()
 const post = ref(
   (await useFetch<Post>(`/api/appi/drodmin/${route.params.siteId}/posts/${route.params.id}`)).data.value

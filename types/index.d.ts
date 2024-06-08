@@ -89,4 +89,16 @@ declare global {
     createdAt: string
     updatedAt: string
   }
+
+  export interface Attachment {
+    id: number
+    siteId: string
+    userId: string
+    name: string
+    path: string
+    size: number
+    mime: string
+    createdAt: string
+  }
+  
 }

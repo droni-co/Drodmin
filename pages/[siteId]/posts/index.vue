@@ -1,7 +1,7 @@
 <template>
   <UiTitle
     class="mb-3"
-    icon="mdi mdi-note-multiple-outline"
+    icon="mdi mdi-newspaper"
     title="Posts"
     :breadcrumb="[
       { label: 'Dashboard', to: `/${route.params.siteId}` },

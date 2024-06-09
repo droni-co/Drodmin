@@ -7,18 +7,23 @@
       {{ site.name.charAt(0) }}
     </span>
   </NuxtLink>
-  <ul>
-    <li>
-      <NuxtLink
-        :to="`/${route.params.siteId}/posts`"
-        class="my-1 text-zinc-100 block p-2 hover:bg-zinc-600 hover:text-zinc-100 transition"
-        :class="{ 'border border-zinc-400': route.path.includes(`/${route.params.siteId}/posts`) }">
-        <i class="mdi mdi-note-multiple-outline"></i>
-      </NuxtLink>
+  <ul class="relative z-10">
+    <li v-for="option in options" :key="option.label">
+      <SiteMenuLink
+        :siteId="String(route.params.siteId)"
+        :path="option.path"
+        :icon="option.icon"
+        :label="option.label"
+        />
     </li>
   </ul>
 </template>
 <script setup lang="ts">
 const route = useRoute()
 const { data:site } = await useFetch<Site>(`/api/appi/drodmin/${route.params.siteId}`)
+const options = ref([
+  { label: 'Posts', icon: 'mdi mdi-newspaper', path: 'posts' },
+  { label: 'Leads', icon: 'mdi mdi-account-filter-outline', path: 'leads' },
+  { label: 'Store', icon: 'mdi mdi-storefront-outline', path: 'store' }
+])
 </script>

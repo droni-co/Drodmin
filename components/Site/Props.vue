@@ -9,7 +9,9 @@
       Properties ({{ localProps.length }})
     </UiFormButton>
     <!-- Start Drawer -->
-    <div v-if="drawer" class="fixed inset-0 bg-black bg-opacity-50 z-10">
+    <div v-if="drawer"
+      class="fixed inset-0 bg-black bg-opacity-50 z-10"
+      v-on:keydown.esc="drawer = !drawer" tabindex="-1">
       <div class="bg-white p-2 w-1/4 ms-auto h-full shadow-lg  overflow-auto">
         <div class="flex border-b">
           <h2 class="grow">Properties</h2>
@@ -25,6 +27,7 @@
             class="w-full"
             size="s"
             datalist="europe-countries"
+            v-on:keydown.enter.prevent="createProp"
           />
           <datalist id="europe-countries">
             <option v-for="dataItem in dataList">{{ dataItem }}</option>

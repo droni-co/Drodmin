@@ -12,7 +12,10 @@
       <i class="mdi mdi-folder-upload-outline"></i>
     </UiFormButton>
     <!-- Start Drawer -->
-    <div v-if="drawer" class="fixed inset-0 bg-black bg-opacity-50 z-10">
+    <div
+      v-if="drawer"
+      class="fixed inset-0 bg-black bg-opacity-50 z-10"
+      v-on:keydown.esc="drawer = !drawer" tabindex="-1">
       <div class="bg-white p-2 w-1/4 ms-auto h-full shadow-lg  overflow-auto">
         <div class="flex border-b">
           <h2 class="grow">Attachments</h2>
@@ -30,6 +33,14 @@
             <input id="file" type="file" class="hidden" @change="createAttachment($event)" />
           </label>
         </div>
+        <hr class="mb-2">
+        <UiFormInput
+          v-model="filters.q"
+          type="search"
+          placeholder="Search..."
+          size="s"
+          v-on:keydown.enter.prevent="getAttachments"
+          />
         <div v-for="attachment in attachments.data" :key="attachment.id" class="bg-zinc-100 p-2 mb-3">
           <div
             class="cursor-pointer border"
@@ -42,7 +53,7 @@
                 :class="{ 'bg-zinc-200': copied === attachment.id}"
                 @click="copy(attachment)"
                 >
-                <i class="mdi mdi-content-copy"></i> Copy
+                <i class="mdi mdi-content-copy"></i> Copy Url
               </button>
               <button
                 type="button"
@@ -51,15 +62,6 @@
                 @click="select(attachment)"
                 >
                 <i class="mdi mdi-check"></i> Select
-              </button>
-              <button
-                type="button"
-                class="w-full border bg-white text-sm p-1 text-zinc-400 truncate transition"
-                :class="{ 'bg-zinc-200': copied === attachment.id}"
-                readonly
-                >
-                <i class="mdi mdi-content-copy"></i>
-                {{ attachment.url }}
               </button>
             </div>
           </div>
@@ -96,14 +98,14 @@ const selected = ref('')
 const name = ref('')
 const file = ref<File | null>();
 const copied = ref(0)
-const filters = ref({ page: 1, limit: 10 })
+const filters = ref({ page: 1, limit: 10, q: ''})
 const attachments = ref(
   (await useFetch<Pagination<Attachment[]>>(`/api/appi/drodmin/${route.params.siteId}/attachments?limit=${filters.value.limit}&page=${filters.value.page}`)).data.value
   ?? { data: []}
 )
 const getAttachments = async ({npage=1, nperPage=20}) => {
-  filters.value = { limit: nperPage, page: npage }
-  const data = await $fetch<Pagination<Attachment[]>>(`/api/appi/drodmin/${route.params.siteId}/attachments?limit=${filters.value.limit}&page=${filters.value.page}`)
+  filters.value = { limit: nperPage, page: npage, q: filters.value.q}
+  const data = await $fetch<Pagination<Attachment[]>>(`/api/appi/drodmin/${route.params.siteId}/attachments?limit=${filters.value.limit}&page=${filters.value.page}&q=${filters.value.q}`)
     attachments.value = data ?? { data: []}  
 }
 

@@ -16,7 +16,8 @@ const newPost = ref<Post>({
   slug: '',
   format: 'markdown',
   active: false,
-  lang: 'es'
+  lang: 'es',
+  props: []
 })
 
 const createPost = async () => {

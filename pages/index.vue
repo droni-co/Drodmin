@@ -4,18 +4,21 @@
     title="Drodmin"
     :breadcrumb="[]"
     />
-  <div class="container mx-auto">
-    <h1>Sitios</h1>
-    <div class="grid grid-cols-4">
-        <div class="col-span-1">
-          <div v-for="enrollment in me!.enrollments" :key="enrollment.id" class="mb-2">
-            <NuxtLink :to="`/${enrollment.site.id}`" class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-zinc-100">
-              <span class="font-medium text-zinc-600">
-                {{ enrollment.site.name.charAt(0) }}
-              </span>
-            </NuxtLink>
-          </div>
-        </div>
+  <div class="container mx-auto py-3">
+    <div class="grid grid-cols-4 gap-2">
+      <UiCard v-for="enrollment in me!.enrollments" :key="enrollment.id" class="mb-2">
+        <NuxtLink v-if="enrollment.role === 'admin'" :to="`/${enrollment.site.id}`" class="text-xl">
+          {{ enrollment.site.name }}
+        </NuxtLink>
+        <a v-else :href="'//'+enrollment.site.domain" target="_blank" class="text-xl">
+          <i class="mdi mdi-web"></i> {{ enrollment.site.domain }}
+        </a>
+        <p class="text-sm text-zinc-600">
+          {{ enrollment.site.description }}<br>
+          <i class="mdi mdi-account"></i> {{ enrollment.role }}<br>
+          <i class="mdi mdi-calendar-blank-outline"></i> {{ enrollment.createdAt }}
+        </p>
+      </UiCard>
     </div>
   </div>
 </template>

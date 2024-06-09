@@ -59,7 +59,6 @@ const post = ref(
 )
 
 const updatePost = async () => {
-  console.log(post.value)
   await useFetch(`/api/appi/drodmin/${route.params.siteId}/posts/${route.params.id}`, {
     method: 'PUT',
     body: JSON.stringify(post.value)

@@ -13,7 +13,8 @@
     :placeholder="placeholder"
     :class="{'border-red-500': error.length > 0, 'p-1 text-sm': size === 's', 'p-2': size === 'm', 'p-5': size === 'l'}"
     :required="required"
-    :pattern="pattern">
+    :pattern="pattern"
+    :list="datalist">
 </template>
 <script setup lang="ts">
 const props = defineProps({
@@ -40,6 +41,10 @@ const props = defineProps({
   size: {
     type: String,
     default: 'm'
+  },
+  datalist: {
+    type: String,
+    default: ''
   }
 })
 </script>

@@ -42,7 +42,7 @@ declare global {
     domain: string
     description: string
     logo: string | null
-    props: any
+    props?: Prop[]
     createdAt: string
     updatedAt: string
   }
@@ -71,7 +71,7 @@ declare global {
     content?: string
     format: 'html' | 'markdown'
     active: boolean
-    props?: any[]
+    props?: Prop[]
     lang: 'es' | 'en'
     createdAt?: string
     updatedAt?: string
@@ -106,6 +106,11 @@ declare global {
     active: boolean
     type: 'success' | 'error' | 'warning' | 'info'
     message: string
+  }
+
+  export interface Prop {
+    name: string,
+    value: any
   }
   
 }

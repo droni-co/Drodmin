@@ -72,7 +72,7 @@ const props = defineProps({
     default: []
   }
 })
-const { data:dataList } = await useFetch<String[]>(`/api/appi/drodmin/${route.params.siteId}/posts/props`)
+const { data:dataList } = await useFetch<string[]>(`/api/appi/drodmin/${route.params.siteId}/posts/props`)
 const localProps = ref(Array.isArray(props.modelValue) ? props.modelValue : [])
 const emits = defineEmits(['update:modelValue'])
 const drawer = ref(false)

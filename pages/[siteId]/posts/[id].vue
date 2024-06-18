@@ -37,7 +37,7 @@
             <SiteAttachment v-model="post.image" class="mb-3" />
 
             <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
-            <SiteProps v-model="post.props" class="col-span-2" />
+            <SiteProps v-model="post.props" class="mb-3" />
             <label for="lang" class="text-sm">Language</label>
             <UiFormSelect id="lang" class="mb-3" v-model="post.lang" :options="[{ name: 'English', id: 'en' }, { name: 'Spanish', id: 'es' }]" />
             <UiFormButton type="submit">Save</UiFormButton>

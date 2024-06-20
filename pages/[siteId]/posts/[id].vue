@@ -21,14 +21,21 @@
             <span>Updated:</span>
             <span>{{ new Date(post.updatedAt ?? '').toLocaleString() }}</span>
           </div>
-          <div class="flex justify-between text-sm mb-3 text-zinc-600">
-            <span>By:</span>
-            <span>{{ post.user?.username }}</span>
-          </div>
+          <UiChip>
+            <i class="mdi mdi-code-block-braces"></i> {{ post.format }}
+          </UiChip>
+          <UiChip>
+            <i class="mdi mdi-translate-variant"></i> {{ post.lang }}
+          </UiChip>
+          <UiChip>
+            <i class="mdi mdi-account-edit"></i> {{ post.user?.username }}
+          </UiChip>
+          <UiChip>
+            <i class="mdi mdi-link-circle-outline"></i> /{{ post.slug }}
+          </UiChip>
           <form @submit.prevent="updatePost">
             <label for="name" class="text-sm">Name</label>
             <UiFormInput class="mb-3" id="name" v-model="post.name" placeholder="Name" required />
-            <UiFormInput class="text-sm p-1 mb-3" v-model="post.slug" placeholder="Slug" required size="s"/>
 
             <label for="description" class="text-sm">Description</label>
             <UiFormTextarea id="description" class="mb-3" v-model="post.description" placeholder="Description" required />
@@ -38,8 +45,6 @@
 
             <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
             <SiteProps v-model="post.props" class="mb-3" />
-            <label for="lang" class="text-sm">Language</label>
-            <UiFormSelect id="lang" class="mb-3" v-model="post.lang" :options="[{ name: 'English', id: 'en' }, { name: 'Spanish', id: 'es' }]" />
             <UiFormButton type="submit">Save</UiFormButton>
           </form>
         </UiCard>

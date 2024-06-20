@@ -8,6 +8,9 @@
       { label: 'Posts', to: `/${route.params.siteId}/posts` }
     ]"
     >
+    <NuxtLink :to="`/${route.params.siteId}/posts/categories`" class="px-3 text-white">
+      <i class="mdi mdi-shape-outline"></i> Categories
+    </NuxtLink>
     <SitePostCreate />
   </UiTitle>
   <div class="container mx-auto">

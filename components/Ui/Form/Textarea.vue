@@ -12,9 +12,10 @@
       w-full
       p-2"
     :placeholder="placeholder"
+    :value="modelValue"
     :class="{'border-red-500': error.length > 0}"
     :required="required"
-    :pattern="pattern">{{ modelValue }}</textarea>
+    :pattern="pattern"></textarea>
 </template>
 <script setup lang="ts">
 const props = defineProps({

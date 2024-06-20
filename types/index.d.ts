@@ -112,5 +112,19 @@ declare global {
     name: string,
     value: any
   }
+
+  export interface Category {
+    id?: number
+    siteId?: string
+    parentId?: number
+    name: string
+    slug: string
+    description: string | null
+    image: string | null
+    lang: 'es' | 'en'
+    children: Category[]
+    parent?: Category
+  }
+  
   
 }

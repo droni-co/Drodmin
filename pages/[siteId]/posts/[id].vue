@@ -46,7 +46,7 @@
             <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
             <SiteProps v-model="post.props" class="mb-3" />
 
-            <SiteProps v-model="post.categories" class="mb-3" />
+            <SitePostCategorySelect v-model="post.categories" :post="post" class="mb-3" />
             <UiFormButton type="submit">Save</UiFormButton>
           </form>
         </UiCard>

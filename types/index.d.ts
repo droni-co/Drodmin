@@ -76,6 +76,7 @@ declare global {
     createdAt?: string
     updatedAt?: string
     user?: User
+    categories?: Category[]
   }
   
   export interface User {

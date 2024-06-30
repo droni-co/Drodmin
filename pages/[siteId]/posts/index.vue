@@ -9,7 +9,7 @@
     ]"
     >
     <NuxtLink :to="`/${route.params.siteId}/posts/categories`" class="px-3 text-white">
-      <i class="mdi mdi-shape-outline"></i> Categories
+      <i class="mdi mdi-folder-outline"></i> Categories
     </NuxtLink>
     <SitePostCreate />
   </UiTitle>

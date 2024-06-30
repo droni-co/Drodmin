@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    //"nuxt-monaco-editor",
+    "nuxt-monaco-editor",
     "@nuxtjs/tailwindcss",
     "@sidebase/nuxt-auth"
   ],

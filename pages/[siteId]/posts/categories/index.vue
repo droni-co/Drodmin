@@ -49,7 +49,9 @@
           <i class="mdi mdi-image-outline"></i>
           {{ (item as unknown as Category).image?.split('/').pop() }}
         </a>
-        <p>{{ (item as unknown as Category).description }}</p>
+        <p class="text-xs">
+          {{ (item as unknown as Category).description }}
+        </p>
       </template>
       <template #actions="item">
         <SitePostCategoryUpdate :passCategory="(item as unknown as Category)" />

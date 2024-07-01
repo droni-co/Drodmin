@@ -6,7 +6,7 @@
       outline
       size="s">
       <i class="mdi mdi-folder-outline"></i>
-      Categories ({{ localCategories.length }})
+      Categories: {{ localCategories.length }}
     </UiFormButton>
     <!-- Start Drawer -->
     <div v-if="drawer"

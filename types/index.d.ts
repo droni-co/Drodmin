@@ -126,6 +126,18 @@ declare global {
     children: Category[]
     parent?: Category
   }
-  
+
+  export interface Comment {
+    id: number
+    postId: number
+    userId: string
+    parentId: number
+    content: string
+    approved: boolean
+    createdAt: string
+    updatedAt: string
+    user: User
+    children: Comment[]
+  }
   
 }

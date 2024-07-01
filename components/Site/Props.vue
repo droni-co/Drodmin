@@ -6,7 +6,7 @@
       outline
       size="s">
       <i class="mdi mdi-code-block-braces"></i>
-      Properties ({{ localProps.length }})
+      Properties: {{ localProps.length }}
     </UiFormButton>
     <!-- Start Drawer -->
     <div v-if="drawer"

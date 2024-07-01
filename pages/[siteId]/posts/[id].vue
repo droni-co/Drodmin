@@ -43,10 +43,13 @@
             <img v-if="post.image" :src="post.image" class="w-full h-32 object-cover" :alt="post.name">
             <SiteAttachment v-model="post.image" class="mb-3" />
 
-            <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
-            <SiteProps v-model="post.props" class="mb-3" />
+            <div class="flex mb-3">
+              <SiteProps v-model="post.props" class="grow" />
+              <SitePostCategorySelect v-model="post.categories" :post="post" class="grow" />
+              <SitePostCommentsModerate :post="post" class="grow" />
+            </div>
 
-            <SitePostCategorySelect v-model="post.categories" :post="post" class="mb-3" />
+            <UiFormSwitch class="mb-1" v-model="post.active" label="Active" />
             <UiFormButton type="submit">Save</UiFormButton>
           </form>
         </UiCard>

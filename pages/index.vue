@@ -5,8 +5,8 @@
     :breadcrumb="[]"
     />
   <div class="container mx-auto py-3">
-    <div class="grid grid-cols-4 gap-2">
-      <UiCard v-for="enrollment in me!.enrollments" :key="enrollment.id" class="mb-2">
+    <div v-if="me" class="grid grid-cols-4 gap-2">
+      <UiCard v-for="enrollment in me.enrollments" :key="enrollment.id" class="mb-2">
         <NuxtLink v-if="enrollment.role === 'admin'" :to="`/${enrollment.site.id}`" class="text-xl">
           {{ enrollment.site.name }}
         </NuxtLink>

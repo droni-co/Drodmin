@@ -136,6 +136,7 @@ declare global {
     approved: boolean
     createdAt: string
     updatedAt: string
+    post: Post
     user: User
     children: Comment[]
   }

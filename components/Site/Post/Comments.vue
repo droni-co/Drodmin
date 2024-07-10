@@ -16,9 +16,6 @@
         <div class="flex border-b">
           <h2 class="grow">
             Comments
-            <small>
-              ({{ post.lang }})
-            </small>
           </h2>
           <button @click="drawer = !drawer">
             <i class="mdi mdi-close"></i>
@@ -26,7 +23,7 @@
         </div>
         <div class="my-2 border-b-1 pb-3">
           <div v-for="comment in comments" :key="comment.id">
-            <SitePostCommentsCard :comment="comment" :post="post" class="mb-2" />
+            <SitePostCommentsCard :comment="comment" :post="comment.post" class="mb-2" />
           </div>
         </div>
       </div>
@@ -36,19 +33,7 @@
 <script setup lang="ts">
 const toast = useState<Toast>('toast')
 const route = useRoute()
-const props = defineProps({
-  modelValue: {
-    type: Array as PropType<Category[]>,
-    default: []
-  },
-  post: {
-    type: Object as PropType<Post>,
-    required: true
-  }
-
-})
-const { data:comments } = await useFetch<Comment[]>(`/api/appi/drodmin/${route.params.siteId}/posts/${props.post.id}/comments`)
-
+const { data:comments } = await useFetch<Comment[]>(`/api/appi/drodmin/${route.params.siteId}/posts/comments`)
 
 const drawer = ref(false)
 

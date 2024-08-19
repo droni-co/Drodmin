@@ -66,8 +66,8 @@ declare global {
     userId?: string
     name: string
     slug: string
-    description?: string | null
-    image?: string | null
+    description: string
+    image: string
     content?: string
     format: 'html' | 'markdown'
     active: boolean

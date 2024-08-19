@@ -29,13 +29,15 @@
             <SitePostCategoryCard
               :category="category"
               :class="{ 'selected': localCategories.includes(category)}"
+              class="hover:bg-gray-100 cursor-pointer p-3"
+              @click="localCategories.find(p => p.id === category.id) ? removeCat(category) : addCat(category)"
             />
             <div v-for="subCategory in category.children" :key="subCategory.id" class="pl-3">
               <SitePostCategoryCard
                 :category="subCategory"
                 :class="{ 'selected': localCategories.find(p => p.id === subCategory.id) }"
                 class="hover:bg-gray-100 cursor-pointer p-3"
-                @click="localCategories.find(p => p.id === subCategory.id) ? removeCat(subCategory) : localCategories.push(subCategory)"
+                @click="localCategories.find(p => p.id === subCategory.id) ? removeCat(subCategory) : addCat(subCategory)"
               />
             </div>
           </div>
@@ -63,7 +65,26 @@ const localCategories = ref<Category[]>(Array.isArray(props.modelValue) ? props.
 const emits = defineEmits(['update:modelValue'])
 const drawer = ref(false)
 
+const addCat = (category: Category) => {
+  // add parent to
+  if (category.parentId && allCategories.value) {
+    const parent = allCategories.value.find(p => p.id === category.parentId)
+    if (parent && !localCategories.value.find(p => p.id === parent.id)) {
+      localCategories.value.push(parent)
+    }
+  }
+  localCategories.value.push(category)
+  emits('update:modelValue', localCategories.value)
+}
+
 const removeCat = (category: Category) => {
+  // remove parent if no subcategories selected
+  if (category.parentId && allCategories.value) {
+    const others = localCategories.value.find(p => p.parentId === category.parentId && p.id !== category.id)
+    if (!others) {
+      localCategories.value = localCategories.value.filter(p => p.id !== category.parentId)
+    }
+  }
   localCategories.value = localCategories.value.filter(p => p.id !== category.id)
   emits('update:modelValue', localCategories.value)
 }
